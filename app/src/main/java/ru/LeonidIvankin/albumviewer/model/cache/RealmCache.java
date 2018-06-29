@@ -1,92 +1,96 @@
 package ru.LeonidIvankin.albumviewer.model.cache;
 
-import ru.LeonidIvankin.albumviewer.model.entity.Album;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
+import ru.LeonidIvankin.albumviewer.app.Constant;
+import ru.LeonidIvankin.albumviewer.model.entity.Albums;
 
 import io.reactivex.Observable;
+import ru.LeonidIvankin.albumviewer.model.entity.AlbumsResults;
+import ru.LeonidIvankin.albumviewer.model.entity.realm.RealmAlbums;
+import ru.LeonidIvankin.albumviewer.model.entity.realm.RealmAlbumsResults;
+import timber.log.Timber;
 
 public class RealmCache implements ICache {
 
 	//записываем объекты в realm
 	@Override
-	public void putAlbum(Album album) {
-/*		Realm realm = Realm.getDefaultInstance();
+	public void putAlbum(Albums albums) {
+		Realm realm = Realm.getDefaultInstance();
 
 		//ищем книгу
-		RealmPhotos realmPhotos = realm
-				.where(RealmPhotos.class)
-				.equalTo("totalHits", photos.getResultCount())
+		RealmAlbums realmAlbums = realm
+				.where(RealmAlbums.class)
+				.equalTo("resultCount", albums.getResultCount())
 				.findFirst();
 		//если книга не существует, создаём
-		if (realmPhotos == null) {
-			realm.executeTransaction(innerRealm -> {
-				RealmPhotos newRealmPhotos = realm.createObject(RealmPhotos.class, photos.getResultCount());
+		if(realmAlbums == null){
+			realm.executeTransaction(innerRealm ->{
+				RealmAlbums newRealmAlbums = realm.createObject(RealmAlbums.class, albums.getResultCount());
 			});
 		}
 
-		realmPhotos = realm
-				.where(RealmPhotos.class)
-				.equalTo("totalHits", photos.getResultCount())
+		realmAlbums = realm
+				.where(RealmAlbums.class)
+				.equalTo("resultCount", albums.getResultCount())
 				.findFirst();
 
-		RealmPhotos finalRealmPhotos = realmPhotos;
+		RealmAlbums finalRealmAlbums = realmAlbums;
 
 		//удаляем все объекты из realm и записываем новые
-		realm.executeTransaction(innerRealm -> {
-			finalRealmPhotos.getHits().deleteAllFromRealm();
+		realm.executeTransaction(innerRealm ->{
+			finalRealmAlbums.getResults().deleteAllFromRealm();
 
-			for (Hits hit : photos.getHits()) {
-				RealmHits realmHits = realm.createObject(RealmHits.class, hit.getPreviewURL());
-				realmHits.setCollectionName(hit.getTags());
-				realmHits.setWebformatURL(hit.getWebformatURL());
-				finalRealmPhotos.getHits().add(realmHits);
+			for(AlbumsResults albumsResults : albums.getResults()) {
+				RealmAlbumsResults realmAlbumsResults = realm.createObject(RealmAlbumsResults.class, albumsResults.getCollectionId());
+				realmAlbumsResults.setCollectionName(albumsResults.getCollectionName());
+				realmAlbumsResults.setArtworkUrl100(albumsResults.getArtworkUrl100());
+				finalRealmAlbums.getResults().add(realmAlbumsResults);
 
 			}
 		});
 
-		realm.close();*/
+
+		realm.close();
 
 	}
 
 	//получаем объекты из realm
 	@Override
-	public Observable<Album> getAlbum() {
-/*
+	public Observable<Albums> getAlbum() {
 		return Observable.create(e -> {
 			Realm realm = Realm.getDefaultInstance();
 
 			//ищем книгу
-			RealmPhotos realmPhotos = realm
-					.where(RealmPhotos.class)
-					.equalTo("totalHits", "500")
-					//FIXME
+			RealmAlbums realmAlbums = realm
+					.where(RealmAlbums.class)
+					.equalTo("resultCount", "40")
 					.findFirst();
 
 			//если книги не существует, выдаём ошибку
-			if (realm == null) {
-				Timber.d(Constant.ERROR_GETTING_PHOTOS_FROM_REALM);
-			} else {
-
+			if(realm == null){
+				Timber.d(Constant.ERROR_GETTING_ALBUM_FROM_REALM);
+			}else{
 				//в противном случае записываем из realm в объект photos данные
-				Album photos = new Album(realmPhotos.getTotalHits());
+				Albums albums = new Albums(realmAlbums.getResultCount());
 
-				List<Hits> hitsList = new ArrayList();
+				List<AlbumsResults> albumsResultsList = new ArrayList<>();
 
-				for (RealmHits realmHits : realmPhotos.getHits()) {
-					Hits hits = new Hits();
-					hits.setPreviewURL(realmHits.getPreviewURL());
-					hits.setCollectionName(realmHits.getTags());
-					hits.setWebformatURL(realmHits.getWebformatURL());
-					hitsList.add(hits);
+				for(RealmAlbumsResults realmAlbumsResults : realmAlbums.getResults()) {
+				    AlbumsResults albumsResults = new AlbumsResults();
+				    albumsResults.setCollectionId(realmAlbumsResults.getCollectionId());
+				    albumsResults.setCollectionName(realmAlbumsResults.getCollectionName());
+				    albumsResults.setArtworkUrl100(realmAlbumsResults.getArtworkUrl100());
+					albumsResultsList.add(albumsResults);
 				}
 
-				photos.setHits(hitsList);
-
-				e.onNext(photos);
+				albums.setResults(albumsResultsList);
+				e.onNext(albums);
 			}
 			e.onComplete();
 			realm.close();
 		});
-*/
-return null;
 	}
 }

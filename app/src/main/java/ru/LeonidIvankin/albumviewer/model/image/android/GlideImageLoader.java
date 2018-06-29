@@ -45,7 +45,7 @@ public class GlideImageLoader implements IImageLoader<ImageView> {
 						@Override
 						public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
 							//сохраняем картинку
-							//imageCache.save(url, resource);
+							imageCache.save(url, resource);
 
 							return false;
 						}
@@ -54,13 +54,13 @@ public class GlideImageLoader implements IImageLoader<ImageView> {
 					.into(container);
 			//если офлайн, берем картинки из кеша
 		} else {
-			/*if (imageCache.contains(url)) {
+			if (imageCache.contains(url)) {
 				GlideApp
 						.with(container.getContext())
 						.load(imageCache.getFile(url))
 						.into(container);
 
-			}*/
+			}
 		}
 
 	}
