@@ -11,5 +11,6 @@ public interface ApiService {
 	@GET("search")
 	Observable<Albums> getAlbum(@Query("entity") String entity,
 								@Query("country") String country,
-								@Query("term") String term);
+								@Query("term") String term,
+								@Query("limit") int limit);
 }

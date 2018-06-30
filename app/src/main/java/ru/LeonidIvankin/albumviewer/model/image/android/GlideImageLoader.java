@@ -28,7 +28,6 @@ public class GlideImageLoader implements IImageLoader<ImageView> {
 
 	@Override
 	public void loadInto(String url, ImageView container) {
-
 		//если онлайн и нету на карте памяти, берем картинки по url
 		if (NetworkStatus.isOnline() && !imageCache.contains(url)) {
 

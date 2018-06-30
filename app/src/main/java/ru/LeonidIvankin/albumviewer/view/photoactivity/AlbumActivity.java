@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import timber.log.Timber;
 
 public class AlbumActivity extends MvpAppCompatActivity implements AlbumView {
 
@@ -50,10 +51,7 @@ public class AlbumActivity extends MvpAppCompatActivity implements AlbumView {
 		Intent intent = getIntent();
 		int position = intent.getIntExtra(Constant.SEND_INTENT_FROM_MAINACTIVITY_TO_ALBUMACTIVITY, 0);
 		albumPresenter.loadAlbum(position);
-
-
 	}
-
 
 	@Override
 	public void showAlbum(String artworkUrl100) {

@@ -23,7 +23,7 @@ public class AlbumRepo {
 		if (NetworkStatus.isOnline()) {
 			//если онлайн, получаем из сети
 			return api
-					.getAlbum(Constant.ENTITY, Constant.COUNTRY, request)
+					.getAlbum(Constant.ENTITY, Constant.COUNTRY, request, 5)
 					.subscribeOn(Schedulers.io())
 					.map(albums -> {
 						//записываем в кеш

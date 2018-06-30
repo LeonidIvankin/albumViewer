@@ -43,10 +43,10 @@ public class RealmCache implements ICache {
 		realm.executeTransaction(innerRealm ->{
 			finalRealmAlbums.getResults().deleteAllFromRealm();
 
-			for(AlbumsResults albumsResults : albums.getResults()) {
-				RealmAlbumsResults realmAlbumsResults = realm.createObject(RealmAlbumsResults.class, albumsResults.getCollectionId());
-				realmAlbumsResults.setCollectionName(albumsResults.getCollectionName());
-				realmAlbumsResults.setArtworkUrl100(albumsResults.getArtworkUrl100());
+			for(AlbumsResults albumsResult : albums.getResults()) {
+				RealmAlbumsResults realmAlbumsResults = realm.createObject(RealmAlbumsResults.class, albumsResult.getCollectionId());
+				realmAlbumsResults.setCollectionName(albumsResult.getCollectionName());
+				realmAlbumsResults.setArtworkUrl100(albumsResult.getArtworkUrl100());
 				finalRealmAlbums.getResults().add(realmAlbumsResults);
 
 			}
@@ -66,7 +66,7 @@ public class RealmCache implements ICache {
 			//ищем книгу
 			RealmAlbums realmAlbums = realm
 					.where(RealmAlbums.class)
-					.equalTo("resultCount", "40")
+					//.equalTo("resultCount", "5")
 					.findFirst();
 
 			//если книги не существует, выдаём ошибку
