@@ -14,6 +14,7 @@ public class Albums {
 	public void setResults(List<AlbumsResults> results) {
 		this.results = results;
 	}
+
 	public void setResultCount(String resultCount) {
 		this.resultCount = resultCount;
 	}
@@ -25,4 +26,7 @@ public class Albums {
 	public String getResultCount() {
 		return resultCount;
 	}
+
+
+
 }

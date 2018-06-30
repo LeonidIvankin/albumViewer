@@ -1,13 +1,13 @@
 package ru.LeonidIvankin.albumviewer.model.repo;
 
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import ru.LeonidIvankin.albumviewer.app.Constant;
 import ru.LeonidIvankin.albumviewer.app.NetworkStatus;
 import ru.LeonidIvankin.albumviewer.model.api.ApiService;
 import ru.LeonidIvankin.albumviewer.model.cache.ICache;
 import ru.LeonidIvankin.albumviewer.model.entity.Albums;
-
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
+import ru.LeonidIvankin.albumviewer.model.entity.TrackList;
 
 public class AlbumRepo {
 
@@ -23,7 +23,7 @@ public class AlbumRepo {
 		if (NetworkStatus.isOnline()) {
 			//если онлайн, получаем из сети
 			return api
-					.getAlbum(Constant.ENTITY, Constant.COUNTRY, request, 5)
+					.getAlbum(Constant.ENTITY, Constant.COUNTRY, request)
 					.subscribeOn(Schedulers.io())
 					.map(albums -> {
 						//записываем в кеш
@@ -35,5 +35,9 @@ public class AlbumRepo {
 			return cache.getAlbum();
 		}
 
+	}
+
+	public Observable<TrackList> getTracks(String id) {
+		return api.getTracks(id, "song").subscribeOn(Schedulers.io());
 	}
 }

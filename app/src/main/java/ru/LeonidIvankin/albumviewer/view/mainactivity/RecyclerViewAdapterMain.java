@@ -18,14 +18,14 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
+public class RecyclerViewAdapterMain extends RecyclerView.Adapter<RecyclerViewAdapterMain.RecyclerViewHolder> {
 
 	private IListPresenter presenter;
 	@Inject
 	IImageLoader<ImageView> imageLoader;
 	IClickAlbum iClickAlbum;
 
-	public RecyclerViewAdapter(IListPresenter presenter, Context context) {
+	public RecyclerViewAdapterMain(IListPresenter presenter, Context context) {
 		this.presenter = presenter;
 		iClickAlbum = (IClickAlbum) context;
 		//inject для Dagger
@@ -35,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	@NonNull
 	@Override
 	public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		return new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view, parent, false));
+		return new RecyclerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_view_main, parent, false));
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 			imageLoader.loadInto(artworkUrl100, imageViewItemRecyclerView);
 		}
 
-		//показываем теги
+		//показываем имя альбома
 		@Override
 		public void setCollectionName(String collectionName) {
 			textViewItemCollectionName.setText(collectionName);

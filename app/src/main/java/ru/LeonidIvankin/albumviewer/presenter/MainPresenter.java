@@ -45,8 +45,8 @@ public class MainPresenter extends MvpPresenter<MainView> {
 		}
 
 		public String maxLength(String str) {
-			if (str.length() > Constant.MAX_LENGTH_TAG) {
-				return str.substring(0, Constant.MAX_LENGTH_TAG) + "...";
+			if (str.length() > Constant.MAX_LENGTH_COLLECTION_NAME) {
+				return str.substring(0, Constant.MAX_LENGTH_COLLECTION_NAME) + "...";
 			}
 			return str;
 		}

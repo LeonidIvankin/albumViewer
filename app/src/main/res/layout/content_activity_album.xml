@@ -9,16 +9,27 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical">
 
-    <ProgressBar
-        android:id="@+id/progress_bar_loading"
+    <ImageView
+        android:id="@+id/image_view_album_activity"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:srcCompat="@drawable/ic_cloud_download_black_48dp"
+        android:layout_weight="90"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/text_view_album_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:padding="8dp"
+        tools:text="TextView"
+        android:layout_gravity="center"
+        android:layout_weight="10"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_main"
+        android:id="@+id/recycler_view_album"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

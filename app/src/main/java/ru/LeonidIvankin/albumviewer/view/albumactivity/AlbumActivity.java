@@ -1,7 +1,9 @@
-package ru.LeonidIvankin.albumviewer.view.photoactivity;
+package ru.LeonidIvankin.albumviewer.view.albumactivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,12 +21,14 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import timber.log.Timber;
 
 public class AlbumActivity extends MvpAppCompatActivity implements AlbumView {
 
 	@BindView(R.id.text_view_album_activity) TextView textViewAlbumActivity;
 	@BindView(R.id.image_view_album_activity) ImageView imageViewAlbumActivity;
+	@BindView(R.id.recycler_view_album) RecyclerView recyclerView;
+
+	private RecyclerViewAdapterAlbum adapter;
 
 	@Inject
 	IImageLoader<ImageView> imageLoader;
@@ -51,6 +55,19 @@ public class AlbumActivity extends MvpAppCompatActivity implements AlbumView {
 		Intent intent = getIntent();
 		int position = intent.getIntExtra(Constant.SEND_INTENT_FROM_MAINACTIVITY_TO_ALBUMACTIVITY, 0);
 		albumPresenter.loadAlbum(position);
+	}
+
+
+	@Override
+	public void initRecyclerView() {
+		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+		adapter = new RecyclerViewAdapterAlbum(albumPresenter.getListPresenterTracks());
+		recyclerView.setAdapter(adapter);
+	}
+
+	@Override
+	public void updateRecyclerView() {
+		adapter.notifyDataSetChanged();
 	}
 
 	@Override

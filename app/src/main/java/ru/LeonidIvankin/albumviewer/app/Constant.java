@@ -9,7 +9,7 @@ public interface Constant {
 	String COUNTRY = "ru";
 
 	//directory
-	String IMAGE_FOLDER_NAME_PREVIEW_URL = "imagePreviewUrl";
+	String IMAGE_FOLDER_NAME_PREVIEW_URL = "artworkUrl100";
 
 	//error
 	String FAILED_TO_CREATE_DIRECTORY = "Failed to create directory: ";
@@ -18,9 +18,9 @@ public interface Constant {
 	String IMAGE_LOAD_FAILED = "Image load failed";
 
 	//send intent
-	String SEND_INTENT_FROM_MAINACTIVITY_TO_ALBUMACTIVITY = "sendIntentFromMainactivityToPhotoactivity";
+	String SEND_INTENT_FROM_MAINACTIVITY_TO_ALBUMACTIVITY = "sendIntentFromMainactivityToAlbumactivity";
 
 	//length
-	int MAX_LENGTH_TAG = 20;
+	int MAX_LENGTH_COLLECTION_NAME = 20;
 
 }

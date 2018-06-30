@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ru.LeonidIvankin.albumviewer.view.photoactivity.AlbumActivity" />
+        <activity android:name="ru.LeonidIvankin.albumviewer.view.albumactivity.AlbumActivity" />
     </application>
 
 </manifest>

@@ -17,7 +17,7 @@ import ru.LeonidIvankin.albumviewer.R;
 import ru.LeonidIvankin.albumviewer.app.App;
 import ru.LeonidIvankin.albumviewer.app.Constant;
 import ru.LeonidIvankin.albumviewer.presenter.MainPresenter;
-import ru.LeonidIvankin.albumviewer.view.photoactivity.AlbumActivity;
+import ru.LeonidIvankin.albumviewer.view.albumactivity.AlbumActivity;
 
 import javax.inject.Inject;
 
@@ -28,12 +28,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 public class MainActivity extends MvpAppCompatActivity implements MainView, IClickAlbum {
 
 
-	private RecyclerViewAdapter adapter;
+	private RecyclerViewAdapterMain adapter;
 
 	@InjectPresenter MainPresenter presenter;
 	@Inject App app;
 
-	@BindView(R.id.recycler_view) RecyclerView recyclerView;
+	@BindView(R.id.recycler_view_main) RecyclerView recyclerView;
 	@BindView(R.id.progress_bar_loading) ProgressBar loadingProgressBar;
 	@BindView(R.id.edit_text_enter_request) EditText editTextEnterRequest;
 	@BindView(R.id.toolbar) Toolbar toolbar;
@@ -80,7 +80,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, ICli
 	@Override
 	public void initRecyclerView() {
 		recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-		adapter = new RecyclerViewAdapter(presenter.getListPresenter(), this);
+		adapter = new RecyclerViewAdapterMain(presenter.getListPresenter(), this);
 		recyclerView.setAdapter(adapter);
 	}
 
