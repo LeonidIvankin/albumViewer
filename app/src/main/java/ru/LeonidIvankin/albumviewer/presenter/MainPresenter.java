@@ -2,7 +2,7 @@ package ru.LeonidIvankin.albumviewer.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import ru.LeonidIvankin.albumviewer.model.entity.AlbumsResults;
+import ru.LeonidIvankin.albumviewer.model.entity.Album;
 import ru.LeonidIvankin.albumviewer.model.repo.AlbumRepo;
 import ru.LeonidIvankin.albumviewer.view.mainactivity.IListPresenter;
 import ru.LeonidIvankin.albumviewer.view.mainactivity.ListAlbumView;
@@ -32,7 +32,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
 
 	private class ListPresenter implements IListPresenter {
 
-		private List<AlbumsResults> results = new ArrayList();
+		private List<Album> results = new ArrayList();
 
 		//сетим url и tag для каждой картинки
 		@Override

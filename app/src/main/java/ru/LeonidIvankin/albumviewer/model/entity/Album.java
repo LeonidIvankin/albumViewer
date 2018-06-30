@@ -1,6 +1,6 @@
 package ru.LeonidIvankin.albumviewer.model.entity;
 
-public class AlbumsResults {
+public class Album {
 
 	String collectionId;
 

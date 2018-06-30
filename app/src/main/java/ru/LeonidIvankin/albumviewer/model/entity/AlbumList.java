@@ -2,16 +2,16 @@ package ru.LeonidIvankin.albumviewer.model.entity;
 
 import java.util.List;
 
-public class Albums {
+public class AlbumList {
 	String resultCount;
 
-	List<AlbumsResults> results;
+	List<Album> results;
 
-	public Albums(String resultCount) {
+	public AlbumList(String resultCount) {
 		this.resultCount = resultCount;
 	}
 
-	public void setResults(List<AlbumsResults> results) {
+	public void setResults(List<Album> results) {
 		this.results = results;
 	}
 
@@ -19,7 +19,7 @@ public class Albums {
 		this.resultCount = resultCount;
 	}
 
-	public List<AlbumsResults> getResults() {
+	public List<Album> getResults() {
 		return results;
 	}
 

@@ -16,6 +16,7 @@ public interface Constant {
 	String FAILED_TO_SAVE_IMAGE = "Failed to save image";
 	String ERROR_GETTING_ALBUM_FROM_REALM = "error getting photos from realm";
 	String IMAGE_LOAD_FAILED = "Image load failed";
+	String FAILED_TO_GET_TRACKS = "Failed to get tracks";
 
 	//send intent
 	String SEND_INTENT_FROM_MAINACTIVITY_TO_ALBUMACTIVITY = "sendIntentFromMainactivityToAlbumactivity";

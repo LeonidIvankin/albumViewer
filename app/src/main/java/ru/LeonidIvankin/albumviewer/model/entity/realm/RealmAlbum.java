@@ -3,7 +3,7 @@ package ru.LeonidIvankin.albumviewer.model.entity.realm;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class RealmAlbumsResults extends RealmObject{
+public class RealmAlbum extends RealmObject{
 	@PrimaryKey
 	String collectionId;
 	String collectionName;

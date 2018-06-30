@@ -4,12 +4,12 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class RealmAlbums extends RealmObject {
+public class RealmAlbumList extends RealmObject {
 	@PrimaryKey
 	private String resultCount;
-	private RealmList<RealmAlbumsResults> results;
+	private RealmList<RealmAlbum> results;
 
-	public RealmList<RealmAlbumsResults> getResults() {
+	public RealmList<RealmAlbum> getResults() {
 		return results;
 	}
 

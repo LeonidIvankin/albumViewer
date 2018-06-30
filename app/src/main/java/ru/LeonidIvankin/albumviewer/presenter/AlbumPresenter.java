@@ -39,7 +39,7 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 
 		@Override
 		public void bindView(ListTrackView holder) {
-			holder.setTrackName(listTrackName.get(holder.getPos()).getWrapperType());
+			holder.setTrackName(listTrackName.get(holder.getPos()).getTrackName());
 		}
 
 		@Override
@@ -70,7 +70,7 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 							.subscribe(trackList -> {
 								this.listPresenterTracks.listTrackName.clear();
 								for(Track track : trackList.getResults()) {
-								    Timber.d(track.getWrapperType());
+								    Timber.d(track.getTrackName());
 								}
 
 								this.listPresenterTracks.listTrackName.addAll(trackList.getResults());
