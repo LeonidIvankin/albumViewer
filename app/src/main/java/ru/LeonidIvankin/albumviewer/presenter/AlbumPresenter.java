@@ -64,7 +64,7 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 					getViewState().showAlbum(album.getResults().get(position).getArtworkUrl100());
 					getViewState().showCollectionName(album.getResults().get(position).getCollectionName());
 
-					albumRepo
+					/*albumRepo
 							.getTracks(album.getResults().get(position).getCollectionId())
 							.observeOn(mainThreadScheduler)
 							.subscribe(trackList -> {
@@ -77,7 +77,7 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 								getViewState().updateRecyclerView();
 							}, throwable -> {
 								Timber.e(throwable, "Failed to get tracks");
-							});
+							});*/
 
 				}, throwable -> {
 					Timber.e(throwable);

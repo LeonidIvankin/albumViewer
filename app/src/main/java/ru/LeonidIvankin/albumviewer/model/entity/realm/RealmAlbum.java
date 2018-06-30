@@ -5,9 +5,9 @@ import io.realm.annotations.PrimaryKey;
 
 public class RealmAlbum extends RealmObject{
 	@PrimaryKey
-	String collectionId;
-	String collectionName;
-	String artworkUrl100;
+	private String collectionId;
+	private String collectionName;
+	private String artworkUrl100;
 
 	public void setCollectionId(String collectionId) {
 		this.collectionId = collectionId;

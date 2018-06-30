@@ -24,4 +24,7 @@ public interface Constant {
 	//length
 	int MAX_LENGTH_COLLECTION_NAME = 20;
 
+	//keys
+	String REALM_ALBUMS_KEY = "realmAlbumsKey";
+
 }

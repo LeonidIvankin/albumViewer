@@ -3,13 +3,9 @@ package ru.LeonidIvankin.albumviewer.model.entity;
 import java.util.List;
 
 public class AlbumList {
-	String resultCount;
+	private String resultCount;
 
-	List<Album> results;
-
-	public AlbumList(String resultCount) {
-		this.resultCount = resultCount;
-	}
+	private List<Album> results;
 
 	public void setResults(List<Album> results) {
 		this.results = results;

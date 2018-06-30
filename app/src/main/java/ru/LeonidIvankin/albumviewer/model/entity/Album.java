@@ -2,11 +2,11 @@ package ru.LeonidIvankin.albumviewer.model.entity;
 
 public class Album {
 
-	String collectionId;
+	private String collectionId;
 
-	String collectionName;
+	private String collectionName;
 
-	String artworkUrl100;
+	private String artworkUrl100;
 
 	public String getCollectionId() {
 		return collectionId;
