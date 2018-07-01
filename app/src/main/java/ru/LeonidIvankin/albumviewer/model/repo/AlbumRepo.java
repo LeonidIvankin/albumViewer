@@ -10,6 +10,7 @@ import ru.LeonidIvankin.albumviewer.model.api.ApiService;
 import ru.LeonidIvankin.albumviewer.model.cache.ICache;
 import ru.LeonidIvankin.albumviewer.model.entity.AlbumList;
 import ru.LeonidIvankin.albumviewer.model.entity.TrackList;
+import timber.log.Timber;
 
 public class AlbumRepo {
 
@@ -31,7 +32,6 @@ public class AlbumRepo {
 					.map(albumList -> {
 						//сортировка альбомов
 						Collections.sort(albumList.getResults(), (a, b) -> a.getCollectionName().compareTo(b.getCollectionName()));
-
 						//записываем в кеш
 						cache.putAlbum(albumList);
 						return albumList;
@@ -44,6 +44,15 @@ public class AlbumRepo {
 	}
 
 	public Observable<TrackList> getTracks(int id) {
-		return api.getTracks(id, Constant.ENTITY_SONG).subscribeOn(Schedulers.io());
+		return api
+				.getTracks(id, Constant.ENTITY_SONG)
+				.subscribeOn(Schedulers.io())
+				.map(trackList -> {
+					//удаление информации об альбоме из списка треков
+					if(trackList.getResults().get(0).getWrapperType().equals(Constant.ENTITY_COLLECTION)){
+						trackList.getResults().remove(0);
+					}
+					return trackList;
+				});
 	}
 }

@@ -29,5 +29,9 @@ public interface Constant {
 
 	//entity iTunes
 	String ENTITY_SONG = "song";
+	String ENTITY_COLLECTION = "collection";
+
+	//request
+	String REQUEST_CHARTS = "charts";
 
 }

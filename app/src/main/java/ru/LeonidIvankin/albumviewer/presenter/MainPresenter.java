@@ -22,6 +22,7 @@ import ru.LeonidIvankin.albumviewer.app.Constant;
 
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
+
 	private Scheduler mainThreadScheduler;
 	@Inject AlbumRepo albumRepo;
 	private ListPresenter listPresenter = new ListPresenter();
@@ -44,6 +45,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
 			holder.setCollectionName(tag);
 		}
 
+		//убираем часть строки, которая не вмещается
 		public String maxLength(String str) {
 			if (str.length() > Constant.MAX_LENGTH_COLLECTION_NAME) {
 				return str.substring(0, Constant.MAX_LENGTH_COLLECTION_NAME) + "...";
@@ -88,7 +90,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
 	}
 
 	private void loadAlbum() {
-		loadAlbum("charts");
+		loadAlbum(Constant.REQUEST_CHARTS);
 	}
 
 
