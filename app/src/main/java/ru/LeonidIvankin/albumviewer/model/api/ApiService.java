@@ -15,6 +15,6 @@ public interface ApiService {
 								   @Query("term") String term);
 
 	@GET("lookup")
-	Observable<TrackList> getTracks(@Query("id") String id,
+	Observable<TrackList> getTracks(@Query("id") int id,
 										  @Query("entity") String entity);
 }

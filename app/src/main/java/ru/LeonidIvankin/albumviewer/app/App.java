@@ -2,11 +2,10 @@ package ru.LeonidIvankin.albumviewer.app;
 
 import android.app.Application;
 
+import io.realm.Realm;
 import ru.LeonidIvankin.albumviewer.di.AppComponent;
 import ru.LeonidIvankin.albumviewer.di.DaggerAppComponent;
 import ru.LeonidIvankin.albumviewer.di.modules.AppModule;
-
-import io.realm.Realm;
 import timber.log.Timber;
 
 public class App extends Application {

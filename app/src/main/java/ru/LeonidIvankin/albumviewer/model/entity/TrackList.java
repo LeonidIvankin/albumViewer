@@ -4,9 +4,7 @@ import java.util.List;
 
 public class TrackList {
 
-
-
-	String resultCount;
+	private String resultCount;
 
 	public String getResultCount() {
 		return resultCount;

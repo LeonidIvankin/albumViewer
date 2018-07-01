@@ -31,6 +31,7 @@ public class AlbumRepo {
 					.map(albumList -> {
 						//сортировка альбомов
 						Collections.sort(albumList.getResults(), (a, b) -> a.getCollectionName().compareTo(b.getCollectionName()));
+
 						//записываем в кеш
 						cache.putAlbum(albumList);
 						return albumList;
@@ -42,7 +43,7 @@ public class AlbumRepo {
 
 	}
 
-	public Observable<TrackList> getTracks(String id) {
+	public Observable<TrackList> getTracks(int id) {
 		return api.getTracks(id, Constant.ENTITY_SONG).subscribeOn(Schedulers.io());
 	}
 }

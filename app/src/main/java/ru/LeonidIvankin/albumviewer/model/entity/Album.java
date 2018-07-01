@@ -2,13 +2,13 @@ package ru.LeonidIvankin.albumviewer.model.entity;
 
 public class Album {
 
-	private String collectionId;
+	private int collectionId;
 
 	private String collectionName;
 
 	private String artworkUrl100;
 
-	public String getCollectionId() {
+	public int getCollectionId() {
 		return collectionId;
 	}
 
@@ -20,7 +20,7 @@ public class Album {
 		return collectionName;
 	}
 
-	public void setCollectionId(String collectionId) {
+	public void setCollectionId(int collectionId) {
 		this.collectionId = collectionId;
 	}
 

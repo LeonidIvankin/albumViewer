@@ -2,8 +2,8 @@ package ru.LeonidIvankin.albumviewer.model.entity;
 
 public class Track {
 
-	String wrapperType;
-	String trackName;
+	private String wrapperType;
+	private String trackName;
 
 	public String getTrackName() {
 		return trackName;
