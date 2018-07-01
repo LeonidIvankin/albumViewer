@@ -27,4 +27,7 @@ public interface Constant {
 	//keys
 	String REALM_ALBUMS_KEY = "realmAlbumsKey";
 
+	//entity iTunes
+	String ENTITY_SONG = "song";
+
 }

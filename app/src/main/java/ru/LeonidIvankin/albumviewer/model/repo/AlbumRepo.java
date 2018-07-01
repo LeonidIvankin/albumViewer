@@ -1,16 +1,18 @@
 package ru.LeonidIvankin.albumviewer.model.repo;
 
+import java.util.Collections;
+
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import ru.LeonidIvankin.albumviewer.app.Constant;
 import ru.LeonidIvankin.albumviewer.app.NetworkStatus;
 import ru.LeonidIvankin.albumviewer.model.api.ApiService;
 import ru.LeonidIvankin.albumviewer.model.cache.ICache;
 import ru.LeonidIvankin.albumviewer.model.entity.AlbumList;
-
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 import ru.LeonidIvankin.albumviewer.model.entity.TrackList;
 
 public class AlbumRepo {
+
 
 	private ICache cache;
 	private ApiService api;
@@ -27,6 +29,8 @@ public class AlbumRepo {
 					.getAlbum(Constant.ENTITY, Constant.COUNTRY, request)
 					.subscribeOn(Schedulers.io())
 					.map(albumList -> {
+						//сортировка альбомов
+						Collections.sort(albumList.getResults(), (a, b) -> a.getCollectionName().compareTo(b.getCollectionName()));
 						//записываем в кеш
 						cache.putAlbum(albumList);
 						return albumList;
@@ -39,6 +43,6 @@ public class AlbumRepo {
 	}
 
 	public Observable<TrackList> getTracks(String id) {
-		return api.getTracks(id, "song").subscribeOn(Schedulers.io());
+		return api.getTracks(id, Constant.ENTITY_SONG).subscribeOn(Schedulers.io());
 	}
 }

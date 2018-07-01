@@ -6,6 +6,7 @@ import com.arellomobile.mvp.MvpPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.LeonidIvankin.albumviewer.app.Constant;
 import ru.LeonidIvankin.albumviewer.model.cache.ICache;
 import ru.LeonidIvankin.albumviewer.model.entity.Track;
 import ru.LeonidIvankin.albumviewer.model.entity.TrackList;
@@ -64,7 +65,7 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 					getViewState().showAlbum(album.getResults().get(position).getArtworkUrl100());
 					getViewState().showCollectionName(album.getResults().get(position).getCollectionName());
 
-					/*albumRepo
+					albumRepo
 							.getTracks(album.getResults().get(position).getCollectionId())
 							.observeOn(mainThreadScheduler)
 							.subscribe(trackList -> {
@@ -76,8 +77,8 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 								this.listPresenterTracks.listTrackName.addAll(trackList.getResults());
 								getViewState().updateRecyclerView();
 							}, throwable -> {
-								Timber.e(throwable, "Failed to get tracks");
-							});*/
+								Timber.e(throwable, Constant.FAILED_TO_GET_TRACKS);
+							});
 
 				}, throwable -> {
 					Timber.e(throwable);

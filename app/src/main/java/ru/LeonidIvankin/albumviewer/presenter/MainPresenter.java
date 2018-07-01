@@ -75,8 +75,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
 		Disposable disposable = albumRepo.getAlbum(request)
 				.observeOn(mainThreadScheduler)
 				.subscribe(album -> {
-					//возвращаем объект с распарсеным json
-					Timber.d("result in " + Thread.currentThread().getName());
 					//передаём все url
 					this.listPresenter.results.clear();
 					this.listPresenter.results.addAll(album.getResults());
