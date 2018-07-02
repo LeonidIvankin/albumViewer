@@ -24,8 +24,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class AlbumActivity extends MvpAppCompatActivity implements AlbumView {
 
-	@BindView(R.id.text_view_album_activity) TextView textViewAlbumActivity;
-	@BindView(R.id.image_view_album_activity) ImageView imageViewAlbumActivity;
+	@BindView(R.id.text_view_album_collection_name) TextView textViewAlbumCollectionName;
+	@BindView(R.id.text_view_album_artist_name) TextView textViewAlbumArtistName;
+	@BindView(R.id.text_view_album_collection_price) TextView textViewAlbumCollectionPrice;
+	@BindView(R.id.text_view_album_primary_genre_name) TextView textViewAlbumPrimaryGenreName;
+	@BindView(R.id.image_view_album_artwork_url_100) ImageView imageViewAlbumArtworkUrl100;
 	@BindView(R.id.recycler_view_album) RecyclerView recyclerView;
 
 	private RecyclerViewAdapterAlbum adapter;
@@ -71,12 +74,27 @@ public class AlbumActivity extends MvpAppCompatActivity implements AlbumView {
 	}
 
 	@Override
-	public void showAlbum(String artworkUrl100) {
-		imageLoader.loadInto(artworkUrl100, imageViewAlbumActivity);
+	public void showAlbumArtworkUrl100(String artworkUrl100) {
+		imageLoader.loadInto(artworkUrl100, imageViewAlbumArtworkUrl100);
 	}
 
 	@Override
 	public void showCollectionName(String collectionName) {
-		textViewAlbumActivity.setText(collectionName);
+		textViewAlbumCollectionName.setText(collectionName);
+	}
+
+	@Override
+	public void showCollectionPrice(String collectionPrice) {
+		textViewAlbumCollectionPrice.setText(collectionPrice);
+	}
+
+	@Override
+	public void showPrimaryGenreName(String primaryGenreName) {
+		textViewAlbumPrimaryGenreName.setText(primaryGenreName);
+	}
+
+	@Override
+	public void showArtistName(String artistName) {
+		textViewAlbumArtistName.setText(artistName);
 	}
 }

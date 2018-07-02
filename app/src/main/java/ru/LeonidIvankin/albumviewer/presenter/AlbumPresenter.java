@@ -1,5 +1,7 @@
 package ru.LeonidIvankin.albumviewer.presenter;
 
+import android.support.annotation.NonNull;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
@@ -62,18 +64,15 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 		Disposable disposable = cache.getAlbum()
 				.observeOn(mainThreadScheduler)
 				.subscribe(album -> {
-					getViewState().showAlbum(album.getResults().get(position).getArtworkUrl100());
+					getViewState().showAlbumArtworkUrl100(album.getResults().get(position).getArtworkUrl100());
 					getViewState().showCollectionName(album.getResults().get(position).getCollectionName());
 
 					albumRepo
 							.getTracks(album.getResults().get(position).getCollectionId())
 							.observeOn(mainThreadScheduler)
+							.map(this::showAlbumInformation)
 							.subscribe(trackList -> {
 								this.listPresenterTracks.listTrackName.clear();
-								for(Track track : trackList.getResults()) {
-								    Timber.d(track.getTrackName());
-								}
-
 								this.listPresenterTracks.listTrackName.addAll(trackList.getResults());
 								getViewState().updateRecyclerView();
 							}, throwable -> {
@@ -85,6 +84,19 @@ public class AlbumPresenter extends MvpPresenter<AlbumView> {
 				});
 
 
+	}
+
+	@NonNull
+	private TrackList showAlbumInformation(TrackList trackList) {
+		Timber.d(trackList.getResults().get(0).getWrapperType());
+		if(trackList.getResults().get(0).getWrapperType().equals(Constant.ENTITY_COLLECTION)){
+			getViewState().showArtistName(trackList.getResults().get(0).getArtistName());
+			getViewState().showPrimaryGenreName(trackList.getResults().get(0).getPrimaryGenreName());
+			getViewState().showCollectionPrice(trackList.getResults().get(0).getCollectionPrice());
+			//удаление информации об альбоме из списка треков
+			trackList.getResults().remove(0);
+		}
+		return trackList;
 	}
 
 	public ListPresenterTracks getListPresenterTracks() {

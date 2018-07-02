@@ -11,9 +11,15 @@ public interface AlbumView extends MvpView {
 
 	void updateRecyclerView();
 
-	void showAlbum(String artworkUrl100);
+	void showAlbumArtworkUrl100(String artworkUrl100);
 
 	void showCollectionName(String collectionName);
+
+	void showCollectionPrice(String collectionPrice);
+
+	void showPrimaryGenreName(String primaryGenreName);
+
+	void showArtistName(String artistName);
 
 
 }

@@ -4,6 +4,21 @@ public class Track {
 
 	private String wrapperType;
 	private String trackName;
+	private String artistName;
+	private String collectionPrice;
+	private String primaryGenreName;
+
+	public String getArtistName() {
+		return artistName;
+	}
+
+	public String getCollectionPrice() {
+		return collectionPrice;
+	}
+
+	public String getPrimaryGenreName() {
+		return primaryGenreName;
+	}
 
 	public String getTrackName() {
 		return trackName;

@@ -46,13 +46,6 @@ public class AlbumRepo {
 	public Observable<TrackList> getTracks(int id) {
 		return api
 				.getTracks(id, Constant.ENTITY_SONG)
-				.subscribeOn(Schedulers.io())
-				.map(trackList -> {
-					//удаление информации об альбоме из списка треков
-					if(trackList.getResults().get(0).getWrapperType().equals(Constant.ENTITY_COLLECTION)){
-						trackList.getResults().remove(0);
-					}
-					return trackList;
-				});
+				.subscribeOn(Schedulers.io());
 	}
 }
